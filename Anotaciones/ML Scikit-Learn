@@ -1,0 +1,18 @@
+ML Scikit-Learn (sklearn)
+
+Scikit-Learn es una librería ML de Python, permite crear modelos ML para realizar
+patrones, predicciones y evaluaciones del mismo.
+
+	-Está hecho en NumPy y Matplotlib.
+	-Tiene muchos built-in ML models.
+	-Tiene métodos para evaluar ML models.
+	-Es una API bien diseñada.
+
+SCIKIT LEART WORKFLOW:
+	1. Preparar la data
+	2. Escoger un modelo que se adapte al problema.
+	3. Encajar el modelo a la data y realizar predicciones.
+	4. Evaluar el modelo
+	5. Mejorar el modelo a través del experimento.
+	6. Guardar y reusar el modelo entrenado.
+

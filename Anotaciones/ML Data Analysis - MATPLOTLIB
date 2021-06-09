@@ -1,0 +1,300 @@
+ML Data Analysis
+
+3. MATPLOTLIB
+
+	Matplotlib es una librería de Python para 'trazado' o 'gráficos', por lo que permite visualizar
+	data en trazados, figuras, etc. Matplotlib tiene las siguientes caracerísticas:
+
+	-Está hecho con NumPy Arrays.
+	-Se integra directamente con Pandas.
+	-Puede crear trazados básicos o avanzados.
+	-Posee una interfaz fácil de manejar.
+	-Se puede trazar data desde NumPy Arrays y Pandas DataFrames. 
+
+	NOTA: existen dos tipos de 'plotting', son 'pyplot API' (menos flexible) y 'object-oriented API'.
+
+	NOTA: El símbolo '%' es para declarar 'Magic Functions'. (VER DOCUMENTACION JUPYTER NOTEBOOK)
+
+	_________________________________________________________________________________________________
+
+	A. Importando y utilizando Matplotlib
+
+		Importando Matplotlib:					import matplotlib as plt
+		Crear un plot (figure) en blanco:		plt.plot() 
+		Para evitar '[]', se añade ';':			plt.plot();
+		Crear un plot con valores:				plt.plot([...], [...])  /  plt.plot(x,y)
+		Mostrar un plot:						plt.show()
+
+		Existen dos tipos de 'plotting': 		pyplot API y object-oriented API
+
+	_________________________________________________________________________________________________
+
+	B. Métodos para plotting:
+
+		- 1er Método - ADD_SUBPLOT()
+
+			Este método añade un conjunto de ejes en la figura pero suponiendolo en una matríz de 
+			filas y columnas. Los plots se añadirían entonces a la posición asignada.
+
+			EJEMPLO:
+
+				fig = plt.figure()       		#creates a figure 
+				fig.add_subplot(231)     		#adds some axes
+				plt.plot([1, 2, 3, 4])
+
+				# NOTA: 'ax = fig.add_subplot()' se puede declarar tal:
+				# ax = fig.add_subplot(nrows, ncols, index, **kwargs)
+				# ax = fig.add_subplot(111) que es lo mismo que
+				# ax = fig.add_subplot(1, 1, 1)  es el default
+				
+				# Es bueno jugar con los parámetros, se entiende mejor.
+				'''
+				fig.add_subplot(232)
+				plt.plot([1, 3, 2, 6])
+				fig.add_subplot(336)
+				plt.plot([5, 2, 6, 1])
+				fig.add_subplot(447)    	 #Esta la sobrepuse a proposito
+				plt.plot([0, 5, 1, 7])
+				'''
+				plt.show()
+
+		- 2do Método - ADD.AXES()
+
+			Este método añade un conjunto de ejes en la figura y se mostrarán en las posiciones y 
+			tamaños que fijemos, aún si ya existen otros ejes en dichos parámetros.
+
+			EJEMPLO:
+
+				fig = plt.figure()      					#creates a figure
+				
+				#fig.add_axes( [left, bottom, width, height] )
+
+				ax = fig.add_axes([1, 1, 0.5, 0.5])			#Primer axe.
+				ax.plot(x, y)
+
+				ax = fig.add_axes([1.6, 1, 0.5, 0.5])		#Segundo axe, se puede seguir.
+				ax.plot([1, 4, 2, 8])
+
+				ax = fig.add_axes([2.2, 0.5, 0.5, 0.5])		#Tercer axe.
+				ax.plot([1, 4, 2, 8])
+
+				plt.show()
+
+		- 3er Método - SUBPLOTS() (RECOMMENDED)
+
+			Esta función crea una figura y varios axes (los que se especifiquen).
+			
+			EJEMPLO:			
+
+				#fig, ax = plt.subplots(3, 2), esto crearía grid 3x2 de plots 
+				#a los cuales podemos configurar por separado.
+
+				#ax contiene las referencias a cada axes. Si quisieramos acceder 
+				#a uno de los axes (ejemplo): 
+				#  ax[1, 0].plot(y)
+
+				#Por default, plt.subplots() es plt.subplots(1, 1).
+
+				fig, ax = plt.subplots()     		#
+				ax.plot(x, [50, 100, 200, 250]);	#add some data
+
+			EJEMPLO: MATPLOTLIB EXAMPLE WORKFLOW
+
+				# 0. Import matplotlib and get it ready for plotting in Jupyter
+
+				%matplotlib inline
+				import matplotlib.pyplot as plt
+
+				# 1. Prepare data
+				x = [1, 2, 3, 4]
+				y = [11, 22, 33, 44]
+
+				# 2. Setup plot
+				#fig, ax = plt.subplots(figsize=(10, 10))     #width, height
+				fig, ax = plt.subplots(2, 2, figsize=(10, 10))
+
+				# 3. Plot data
+				#ax.plot(x, y)
+				ax[1, 0].plot(x, [1, 15, 43, 51])
+				ax[1, 0].set_facecolor('pink')
+
+				# 4. Customize plot
+				ax[1, 0].set(title="Simple Plot", 
+				             xlabel="x-axis",
+				             ylabel="y-axis")
+
+				# 5. Save & show (save the whole figure)
+				fig.savefig("images/sample-plot.png")
+
+	_________________________________________________________________________________________________
+
+	C. Tipos de Plots (Básicos):
+
+		Los plots básicos más utilizados son:
+
+			-Line Plots
+			-Scatter Plots
+			-Bar Plots
+			-Histogram
+			-Subplots
+
+		- Figuras a partir de NumPy Arrays (EJEMPLO):
+
+			import numpy as np
+
+			# Crear Data:
+			x = np.linspace(0, 10, 100)			#Funcion rara
+			x[:10]
+				
+			# Plot the data and create a LINE PLOT:
+			fig, ax = plt.subplots()
+			ax.plot(x, x**2);			
+
+			# Use the same data to make SCATTER PLOT:
+			fig, ax = plt.subplots()
+			ax.scatter(x, np.exp(x));
+			# ax.scatter(x, np.sin(x));
+
+			# Make a BAR PLOT from dictionary:
+			nut_butter_prices = {"Almond butter": 10, "Peanut butter": 8, "Cashew butter": 12}
+			fig, ax = plt.subplots()
+			ax.bar(nut_butter_prices.keys(), nut_butter_prices.values())
+			ax.set(title="Dan's Nut Butter Store", ylabel="Prices($)");
+			#	Another bar plot but horizontal
+			#	ax.barh(list(nut_butter_prices.keys()), list(nut_butter_prices.values()));
+
+			# Make some data for Histograms and plot it:
+			np.random.seed(seed=0)
+			x = np.random.randn(1000)    	 # Del standard normal distrib.
+			fig, ax = plt.subplots()
+			ax.hist(x);
+
+		- Dos opciones para SUBPLOTS:
+
+			- Subplot option 1 (Defining axis):
+
+				fig, ((ax1, ax2), (ax3, ax4)) = plt.subplots(nrows=2, ncols=2, figsize=(10,5))
+
+				# Plot to each different axis:
+				np.random.seed(seed=1)
+				ax1.plot(x, x/2)
+				ax2.scatter(np.random.random(10), np.random.random(10))
+				ax3.bar(nut_butter_prices.keys(), nut_butter_prices.values())
+				ax4.hist(np.random.randn(1000));
+
+			- Subplot option 2 (Defining index):
+
+				fig, ax = plt.subplots(nrows=2, ncols=2, figsize=(10,5))
+
+				# Plot to each different index:
+				np.random.seed(seed=2)
+				ax[0, 0].plot(x, x/2)
+				ax[0, 1].scatter(np.random.random(10), np.random.random(10))
+				ax[1, 0].bar(nut_butter_prices.keys(), nut_butter_prices.values())
+				ax[1, 1].hist(np.random.randn(1000));
+
+	_________________________________________________________________________________________________
+
+	D. Plotting desde Pandas DataFrames:
+
+		Plot de un DataFrame:				df.plot() / df.plot(x="col1", y="col2", kind="tipo", ...)
+		Es igual declarar:					df.plot(kind="bar")  /  df.plot.bar()
+											Nota: Igual para histogramas u otros plots.
+		En Hist, se puede cambiar bins:		df.plot.hist(bins=20)	
+		
+		Ejemplo: Plotting a histogram on subplots from a Pandas DataFrame
+			df.plot.hist(figsize=(10, 30), subplots=True);
+
+		IMPORTANTE: 
+		Pyplot vs Matplotlib OO Method:
+			- When plotting something quickly, okay to use Pyplot Method.
+			- When plotting something more advanced, use the OO Method.
+
+			PYPLOT METHOD:
+				over_50.plot(kind='scatter', x='age', y='chol', c='target', figsize=(10, 6));
+
+			OO METHOD MIXED WITH PYTPLOT METHOD:
+				fig, ax = plt.subplots(figsize=(10, 6))
+				over_50.plot(kind='scatter', x='age', y='chol', c='target', ax=ax);
+
+			OO METHOD FROM SCRATCH:
+				fig, ax = plt.subplots(figsize=(10, 6))
+				# Plot the data
+				scatter = ax.scatter(x=over_50["age"], 
+									 y=over_50["chol"], 
+									 c=over_50["target"])
+		 		# Customize the plot (Title and labels)
+		 		ax.set(title="Heart Disease and Cholesterol Levels",
+		 				xlabel="Age",
+		 				ylabel="Cholesterol");
+		 		# Add a legend
+		 		ax.legend(*scatter.legend_elements(), title="Target")
+		 		# Add a mean line
+		 		ax.axhline(over_50["chol"].mean(), linestyle='--')
+
+	E. Customizing Matplotlib plots and getting stylish:
+
+		Para observar los distintos estilos disponibles: 		plt.style.available
+		Para cambiar el estilo:									plt.style.use("estilo")
+		*Nota: El estilo cambia para el resto de plots generados luego de esta declaración.
+
+		Para hacer visible la leyenda:							ax.legend().set_visible(True)
+
+		EJEMPLO: Retomando del 'OO METHOD FROM SCRATCH'
+
+			# Al inicio:
+			plt.style.use('seaborn-whitegrid')
+
+			# En Plot the data:
+			scatter = ax.scatter(x=over_50["age"], 
+								 y=over_50["chol"], 
+								 c=over_50["target"],
+								 cmap="winter")			#Change the colours scheme (DOCUMENTACION)
+
+		EJEMPLO: Customizing the 'x' and 'y' axis
+			# Subplot of chol, age and thalach:
+			fig, (ax0, ax1) = plt.subplots(nrows=2, ncols=1, figsize=(10, 10))
+
+			# AX0:
+			# Add data to ax0
+			scatter = ax0.scatter(x=over_50['age'],
+            		          	  y=over_50['chol'],
+                    			  c=over_50['target'],
+                      			  cmap="summer")
+            # Customize ax0
+            ax0.set(title="Heart Disease and Cholesterol Levels", 
+            		ylabel="Cholesterol")
+	       	# Change the x axis limits
+	       	ax0.set_xlim([50, 80])
+	       	# Add a legend to ax0
+			ax0.legend(*scatter.legend_elements(), title="Target")
+			# Add a meanline
+			ax0.axhline(y=over_50["chol"].mean(), linestyle='--')
+
+			# AX1:
+
+			# Add data to ax1
+			scatter = ax1.scatter(x=over_50['age'],
+            		          	y=over_50['thalach'],
+                    		  	c=over_50['target'],
+                      			cmap="plasma")
+			# Customize ax1
+			ax1.set(title="Heart Disease and Max Heart Rate",
+		        	xlabel="Age",
+        			ylabel="Max Heart Rate")
+			# Change ax1 axis limits
+			ax1.set_xlim([50, 80])
+			ax1.set_ylim([60, 200])
+			# Add a legend to ax1
+			ax1.legend(*scatter.legend_elements(), title="Target")
+			# Add a meanline
+			ax1.axhline(y=over_50["thalach"].mean(), linestyle='--')
+
+			# Add a title to the figure
+			fig.suptitle("Heart Disease Analysis", fontsize=16, fontweight="bold");			 
+
+		- Para guardar una figura la manera más facil de guardar nuestros gráficos sería
+		  haciendo click derecho en la imagen y guardar. 
+
+		- La otra manera es guardando la figura desde el código:
+			fig.savefig("heart-disease-analysis-plot-saved-with-code.png")

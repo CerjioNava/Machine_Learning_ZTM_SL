@@ -1,0 +1,107 @@
+ML Data Analysis
+
+1. PANDAS:
+
+	Pandas es una librería extensión de NumPy para la manipulación y descripción de datos en forma de
+	tablas numéricas o series.
+
+	Recordar crear el 'env' en la carpeta del proyecto (MINICONDA):
+		conda create --prefix ./env pandas numpy matplotlib scikit-learn 
+		conda install jupyter
+	Se activa luego el 'env':
+		conda activate path/to/env
+
+	Del pandas dataframes anatomy:	Columnas (axis=1) y Filas (axis=0)
+	_________________________________________________________________________________________________
+
+  	A. Leer la documentación de Pandas!!! 
+
+		Importación de pandas: 		import panda as pd
+		Creación de Series:			pd.Series([item1, item2, ...])
+		Creación de DataFrames:		pd.Dataframe({"titulo1": serie1, "titulo2": serie2, ...})
+
+		Nota: puede añadirse un segundo parámetro a Series o Dataframe para definir indexs.
+
+		Para importar un CSV: 		pd.read_csv("archivocsv.csv")
+		Para importar un EXCEL: 	pd.read_excel("archivoexcel.xlsx")
+		Para exportar a CSV:		variablecsvexcel.to_csv("nombre_archivo.csv", index=False)
+		Para exportar a EXCEL:		variablecsvexcel.to_excel("nombre_archivo.xlsx", index=False)
+		Para importar desde URL:	heart_disease = pd.read_csv("https://raw.githubusercontent.com/
+									mrdbourke/zero-to-mastery-ml/master/data/heart-disease.csv")
+									NOTA: Si es desde github, asegurar RAW FORMAT.
+
+	_________________________________________________________________________________________________
+
+  	B. Describiendo Data con Pandas:
+	
+		Estadísticas numéricas de un dataframe:			df_file.describe()
+		Información de un dataframe:			 		df_file.info()
+		Promedio de columnas numéricas:					df_file.mean()
+		Suma TODAS las columnas:						df_file.sum()
+		Suma de una columna específica:					df_file["column_name"].sum()
+		Número de filas (cara fila es una serie):		len(df_file)
+
+	_________________________________________________________________________________________________
+
+	C. Seleccionando y mostrando data:
+
+		Devuelve las primeras 5 filas:					df_file.head()
+		Devuelve las primeras N filas:					df_file.head(N)
+		Devuelve las ultimas 5 filas:					df_file.tail()
+		Devuelve las ultimas N filas:					df_file.tail(N)
+
+		'.loc y .iloc' refieren al index y la posición de la serie, respectivamente.
+		df_file.loc[N]	, 	donde N es el index del objeto en la serie.
+		df_file.iloc[N] ,	donde N es la posición del objeto en la serie.
+
+		Devuelve una columna o fila:				df_file.nombre  /  df_file["nombre"]
+		Devuelve true/false si cumplen:				df_file["nombre"] == condicion		(==, <, >, etc)
+		Devuelve objetos que cumplen:			    df_file[df_file["nombre"] == condicion]	  (EJEMPLO)
+
+		Crosstab para comparar dos columnas:		pd.crosstab(df_file["name1"], df_file["name2"])
+		
+		Groupby para agrupar según el parámetro		df_file.groupby(["name1"])
+		 y posteriormente  ejecutar una acción:		df_file.groupby(["name1"]).mean()		(EJEMPLO)
+
+
+		Para visualizar estadísticas o histograma:	df_file.plot()  /  df_file.hist()
+
+		EXTRA Para quitar el $ a una columna de precios:
+			precio_sin_$ = df_file["Price"].str.replace('[\$\,\.]', '').astype(int)
+
+	_________________________________________________________________________________________________
+
+	D. Manipulando data:
+
+		Existen muchas funciones básicas, pero siempre es importante googlear.
+		
+		En el mundo real es natural trabajar con data incompleta. Podemos hacer algunas acciones
+		con esos espacios 'NaN' de la data:
+
+		Rellenar espacios NaN: 				df_file["columna"].fillna(valor_relleno, inplace=True)
+											NOTA: 'inplace' para modificar sobre el dataframe actual.
+
+		Eliminar todo lo que posea un NaN:	df_file.dropna()
+		Eliminar una columna:				df_file.drop(columns = "nombre_columna", inplace=True)
+
+		Series a columnas:				df_file["nueva_columna"] = pd.Series([item1, item2, ...])
+		Listas a columnas:				df_file["nueva_columna"] = [item1, item2, ...]
+										NOTA: La lista debe tener el mismo length que el dataframe.
+
+		Se puede crear una nueva columna a partir de la operación entre otras, por ejemplo:
+				df_file["nueva_columna"] = df_file["columnaX"] * car_sales["columnaY"]	
+
+		Se puede crear una nueva columna a partir de un solo valor, por ejemplo:
+				df_file["nueva_columna"] = 8
+
+
+		IMPORTANTE! Durante el entrenamiento de un modelo ML, la data debe randomizarse con el fin
+		de que el aprendizaje sea el correcto. Un ejemplo de randomizar es:
+
+				df_file_shuffled = df_file.sample(frac=1)		'frac' = proporción de 0 a 1 
+
+		Reset de los index para el nuevo orden:	
+				df_file_shuffled.reset_index(drop=True, inplace=True)
+
+		Aplicar una función a una columna (Ejemplo):
+				new_column = df_file["columna"].apply( lambda x: x*2 )

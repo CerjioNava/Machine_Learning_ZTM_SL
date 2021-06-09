@@ -1,0 +1,91 @@
+MACHINE LEARNING (Anotaciones del curso de ML)
+
+SIX STEPS OF DATA MODELLING:
+https://www.mrdbourke.com/a-6-step-field-guide-for-building-machine-learning-projects/
+_______________________________________________________________________________________________________
+
+1- PROBLEM DEFINITION: Cual es el problema por resolver y como implementar ML? 
+	
+	Main Types of ML Problems:
+
+	-Supervised Learning: Posee Data y Labels, así el algoritmo ML con la Data intenta
+	obtener el Label una y otra vez hasta que el Label sea el correcto. Se conocen:
+
+		-Classification: Predice si algo pertenece a una de dos opciones (Binary Classification), o si existen más de dos opciones (Multi-Class Classification).
+
+		-Regression: Implica predecir un número basado en Data ya existente.
+
+	-Unsupervised Learning: Posee Data pero no Labels. Se conocen:
+
+		-Clustering: Encuentra patrones en la data y las agrupa según sus similitudes.
+
+		-Association: Asocia distinta data para predecir un resultado posterior.
+
+	-Transfer Learning: Transferir información de un modelo ML existente a otro modelo ML.
+
+	-Reinforcement Learning: Implica que el programa realice acciones y se le recompensé por hacerlo bien, como ensayo y error.
+
+_______________________________________________________________________________________________________
+
+2- DATA: Cual es la información que tenemos y como procesarla? Su estructura?
+
+	Main Types of Data:
+
+	-Structured Data: Ordenada en tablas (filas y columnas) como archivos Excel.
+
+	-Unstructured Data: Lo que no se puede ordenar en tablas, como imagenes, audios, videos, textos largos, etc.
+
+	-Static Data: Es información que no cambia en el tiempo.
+
+	-Streaming Data: Es información que está cambiando constantemente.
+
+_______________________________________________________________________________________________________
+
+3- EVALUATION: Que precisión se está buscando?
+
+	Existen distintos tipos de evaluación para cada tipo de problema, algunos son:
+
+	Classification ---> Accuracy, Precision, Recall, etc.
+	Regression -------> MAE, MSE, RMSE.
+	Recommendation ---> Precision at K.
+
+_______________________________________________________________________________________________________
+
+4- FEATURES: Que sabemos de la data y sus características? Pueden ser distintas formas de data. 
+
+	Main Types of Features:
+	
+	-Continuous (or numerical) Features: Un valor numérico (i.e. promedio de latidos, numero de logs).
+	
+	-Categorical Features: Una o la otra (i.e. sexo, una condición).
+	
+	-Derived Features: Son features creadas a partir de la data original (Feature Engineering).
+
+	NOTA: Una feature funciona mejor mientrás más muestra de la data posea dicha característica.
+
+	Feature Coverage: Se trata de asegurar que la mayoría de las muestras posean las características.
+
+_______________________________________________________________________________________________________
+
+5- MODELLING: Basado en nuestro problema y data, qué modelo utilizaremos y como?
+	
+	Splitting Data: Dividir la data en segmentos de Training (70-80%), Validation (10-15%) y Test (10-15%).
+
+	3 SETS (Training, Validation and Test sets):
+
+		1. Choosing and training the model: Escoger el modelo que mejor pueda adaptarse a la data, 
+		entrenarlo para intepretar correctamente la data. NOTA: Minimizar el tiempo entre experimentos
+		y no entrenar el modelo inmediatamente con toda la data ya que puede tardar más tiempo.
+
+		2. Tuning the model: Se verifica el funcionamiento del modelo y se ajusta (hyperparameters) a las necesidades. Tuning puede suceder en Training o Validation.
+
+		3. Model comparison: Luego de entrenar el modelo, se comprueba que el modelo encaje o no (sea Underfitting u Overfitting, ninguno es ideal así que debemos evitar ambos extremos). El modelo con un mejor resultado no siempre es el mejor modelo.
+	
+_______________________________________________________________________________________________________
+
+6- EXPERIMENTS: Como podemos mejorar el proceso?
+
+	
+
+
+

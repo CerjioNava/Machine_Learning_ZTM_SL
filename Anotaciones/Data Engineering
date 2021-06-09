@@ -1,0 +1,84 @@
+Data Engineering
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+
+# 4 tipos de Data:
+
+	* Structured Data: Data organizada en tablas o matrices, con atributos y demás. (Relational Databases)
+
+	* Semi-structured Data: Se encuentra en formatos como XML, JSON, CSV, SQL, etc.
+
+	* Unstructured Data: Se encuentra en formatos sin organización, com oPDF, mails, etc.
+ 
+	* Binary Data: Se encuentra en formatos como Audio, Imagenes, Videos.
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+
+# 3 conceptos fundamentales de Data Engineering:
+
+	1. Data Mining: Preprocesar y extraer conocimiento de la data (Kafka i.e.).
+
+	2. Big Data: Cuando posees demasiada data y debes ejecutarla en la nube (AWS, Azure, Google Cloud, etc).
+
+	3. Data Pipeline: Es un "pipeline" que un Data Engineer crea para extraer data de una manera más efectiva, almacenarla correctamente y distribuirla de manera eficiente.
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+
+* Data Lakes: Lugar donde se almacena la data extraida no estructurada.
+* Data Warehouse: Lugar donde se almacena data estructurada y procesada para ser utilizada.
+* Data Scientist y ML Experts suelen utilizar la data completa (Data Lakes, podemos trabajar con Structured o Unstructured Data), mientras que la data simplificada en Data Warehouse es utilizada por Business/Data Analysts.
+
+- Kafka/Apache Kafka, para la recolección de data.  
+- Azure/AWS/Hadoop, para almacenar mucha data.
+- GoogleBigQuery/AmazonAthena/AmazonRedShift donde se analiza la data util y limpia.
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+
+# Main Tasks of a Data Engineer:
+
+1. ETL (Extract-Transform-Load) Pipeline: Extraer la data, transformarla y almacenarla en un Data Warehouse.
+
+2. Building Analysis Tools: Permite a Data Analyst/Scienctist, Business Intelligence, etc... utilizar herramientas para analizar la data y asegurar que el sistema que se está ejecutando funcione correctamente.
+
+3. Maintain the data warehouse and data lakes, tal que toda la data sea accesible para cualquier parte de la compañia.
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+
+# Types of Databases: 
+Existen demasiados Databases para muchísimos problemas, sin embargo, cada database está hecho para un fin específico, sea Relational o Non Relational. 
+
+1. Relational Database: Puede ser PostgreSQL o MySQL, que permite utilizar SQL para leer y escribir en la databases utilizando el lenguaje de SQL. Es ideal para "Acid Transactions"
+
+2. NoSQL: Puede ser MongoDB, que permite que varios computadores a la vez trabajen como un database (Distributed databases) a diferencia de SQL, esto para databases más grandes. Es más desorganizado.
+
+3. NewSQL: Puede ser VoltDB o CockroachDB, que poseen la distribución de NoSQL y características de SQL.
+
+Existen Databases utilizados para fines específicos:
+
+* Searching: ElasticSearch o Solar, donde colocas data y busca rápidamente.
+* Computational: Apache Spark, donde utilizas data del database y realizas cálculos en ellos.
+
+OLTP (Online Transactional Processing), es parte SQL, permite realizar transacciones online.
+OLAP (Online Analytical Processing), para propósitos de análisis.
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+
+# Hadoop, HDFS and MapReduce
+
+* Hadoop es un "open source distributed processing framework", permite realizar procesamiento de data y almacenamiento para Big Data.
+* HDFS (Hadoop Distributed File System) permite alojar data en multiples computadoras y así almacenar mucha más data.
+* MapReduce en Hadoop permite realizar trabajos en la data almacenada, Batch Processing para limpiar la data y hacerla eficiente.
+* Hive permite trabajar con la data de Hadoop casi como Relational.
+
+# Apache Spark & Apache Flink
+
+* En Spark se mejoró el MapReduce de Hadoop, en algo llamado "In Memory Processing" que permite ejecutar processing jobs mucho más rápido que MapReduce. Sustituyendo así al MapReduce en el proceso de ETL Jobs.
+* En Flink permite Real Time Stream Processing.
+
+# Kafka & Stream Processing
+
+* Permite leer y escribir streams of data como un sistema de mensaje (Message Broker).
+* Permite reacciones a la data en tiempo real (Process).
+* Almacena streams of data de manera segura en un cluster distribuido, replicado y fault-tolerant (Storage).
+
+- Nota: Batch se refiere a procesamiento por lotes, en formato ".bat".

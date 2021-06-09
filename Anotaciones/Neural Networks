@@ -1,0 +1,41 @@
+NEURAL NETWORKS (Deep Learning, Transfer Learning and TensorFlow 2)
+
+Nota: Para esta sección hacemos uso de TensorFlow 2 (Para Deep Learning por ejemplo) y Google Collab.
+
+TENSORFLOW es una librería de computación numérica o deep learning, utilizado para crear modelos de
+deep learning y redes neuronales que analicen Unstructured Data (Imagenes, Audios, textos, etc).
+Tensor Flow tiene algunas ventajas:
+
+	- Escritura rápida de código de Deep Learning en Python (Puede correr en una GPU)
+	- Tiene acceso a muchos modelos pre-built de deep learning.
+	- Habilita el Whole Stack (permitiendo preprocesamiento, modelo y deploy).
+	- Creado por Google y ahora es Open-Source. 
+
+* GPU (Graphical Processing Unit) es más rápido que un CPU en numerical computing. 
+
+* TensorFlow para Deep Learning, TensowFlowHub para Transfer Learning.
+
+# Deep Learning y Redes Neuronales
+
+Las redes neuronales son los algoritmos de Machine Learning que son utilizados para Deep Learning,
+y cada nodo de la red neuronal puede representar un modelo. En Deep Learning, se utilizan multiples
+layers (capas) de redes neuronales donde todas se relacionan entre si respecto a la original.
+
+# Tipos de problemas en Deep Learning:
+
+	* Classification: Puede ser clasificación en imagenes o texto, por ejemplo. 
+	* Sequence to Sequence (seq2seq): Puede ser reconocimiento de audio, por ejemplo.
+	* Object Detection: Similar a Classification, pero define la posición específica de un objeto en una imagen.
+
+# Transfer Learning
+
+	- Permite extraer modelos externos y aplicarlo a nuestro problema, adaptarlo.
+
+# TensorFlow Workflow:
+
+	1. Preparar la data (Transformarla en Tensors).
+	2. Escoger un modelo que se adapte a nuestro problema, usando TensorFlow Hub.
+	3. Fit the model and make predictions.
+	4. Evaluar el modelo.
+	5. Mejorar a través de la experimentación.
+	6. Guardar el modelo y cargar el modelo entrenado.
